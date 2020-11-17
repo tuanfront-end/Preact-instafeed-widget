@@ -1,0 +1,22 @@
+{
+    "name": "devto-a-beginners-tutorial-to-preact-forked",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.html",
+    "scripts": {
+        "start": "parcel index.html --open",
+        "move": "mv dist/*.css /Volumes/Data/MAMP/htdocs/wordpress_1/wp-content/plugins/wiloke-instafeedhub-wp/assets/forWidget/foked.css && mv dist/*.js /Volumes/Data/MAMP/htdocs/wordpress_1/wp-content/plugins/wiloke-instafeedhub-wp/assets/forWidget/foked.js",
+        "build": "parcel build index.html && yarn move"
+    },
+    "dependencies": {
+        "axios": "^0.21.0",
+        "lodash": "^4.17.20",
+        "preact": "^10.5.5"
+    },
+    "devDependencies": {
+        "parcel-bundler": "^1.6.1",
+        "sass": "^1.29.0",
+        "typescript": "^4.0.5"
+    },
+    "keywords": []
+}

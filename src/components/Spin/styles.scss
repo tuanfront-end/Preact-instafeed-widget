@@ -1,0 +1,19 @@
+.wilSpin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    svg {
+        animation: mymove 1s linear 0s infinite;
+        margin-right: 4px;
+    }
+}
+
+@keyframes mymove {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
