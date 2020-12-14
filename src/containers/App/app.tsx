@@ -9,20 +9,27 @@ import { INSTA_IFAME_ID, INSTA_IFRAME_URL } from "../../ultis/constant";
 import { signin, verifyToken } from "./actionVeryfiToken";
 import "./styles.scss";
 import Spin from "../../components/Spin/Spin";
+import InstaIconSvg from "./InstaIconSvg";
 
 export interface AppProps {
   clientId: string;
-  instaId: string;
+  instaIdProps: string;
+  instaTitleProps: string;
 }
 
-function App({ clientId, instaId }: AppProps) {
+function App({ clientId, instaIdProps, instaTitleProps }: AppProps) {
   // === USESTATE === //
   const [isVerify, setIsVerify] = useState(false);
   const [verifyError, setVerifyError] = useState("");
   const [isOpenModal, setOpenModal] = useState(false);
   const [isPostMessageDone, setPostMessageDone] = useState(false);
 
+  const [instaId, setInstaId] = useState(instaIdProps);
+  const [instaTitle, setinstaTitle] = useState(instaTitleProps);
+
   const instaFeedData = () => (window as any).InstafeedHubTokens || {};
+
+  useEffect(() => {}, []);
 
   // === HANDLE === //
   const handleOpenModal = () => setOpenModal(true);
@@ -52,7 +59,6 @@ function App({ clientId, instaId }: AppProps) {
       }
     } else {
       const verifyRes = await verifyToken(instaFeedData());
-      console.log(88, { verifyRes });
       if (typeof verifyRes === "string" && !!verifyRes) {
         setVerifyError(verifyRes);
       }
@@ -84,9 +90,7 @@ function App({ clientId, instaId }: AppProps) {
     }
 
     wn.postMessage({ type: "LOGIN", payload: payloadData }, INSTA_IFRAME_URL);
-    console.log(666, "__HandlePostMessage__", {
-      dataSendPostMessageToIframe: payloadData,
-    });
+
     setPostMessageDone(true);
   };
 
@@ -109,13 +113,7 @@ function App({ clientId, instaId }: AppProps) {
       return;
     }
 
-    console.log(777, "__handleRecevicePostMessage__", {
-      recevicePostMessage: event.data,
-      clientId,
-      isTrue: event.data.payload.status.includes("success"),
-    });
     if (event.data.payload.status.includes("success")) {
-      console.log(888, "--postAction Start--", {});
       const bodyFormData = new FormData();
       bodyFormData.append("instaId", event.data.payload.id);
       bodyFormData.append("instaTitle", event.data.payload.title);
@@ -132,9 +130,10 @@ function App({ clientId, instaId }: AppProps) {
           bodyFormData,
           config
         );
-        console.log(999, "--postAction Done --", { aaa });
+        setInstaId(event.data.payload.id);
+        setinstaTitle(event.data.payload.title);
       } catch (error) {
-        console.log(999, "--postAction Done --", { error);
+        console.log({ error });
       }
 
       setTimeout(() => {
@@ -195,7 +194,11 @@ function App({ clientId, instaId }: AppProps) {
         color="green"
         onClick={handleClickBtnConnect}
       >
-        Connect to Instagram
+        <div style={{ marginBottom: 4 }}>
+          <InstaIconSvg />
+        </div>
+        {instaId ? instaTitle || "Click to edit" : `Connect to Instagram`}
+        {instaId && ` (${instaId})`}
       </Button>
       {isVerify && renderLoading()}
       {!!verifyError && !isVerify && renderError()}

@@ -25,6 +25,13 @@ function Button({
         padding: "1rem 2rem",
         border: 0,
         cursor: "pointer",
+        textAlign: "center",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        borderRadius: 4,
+        width: "100%",
       }}
       onClick={(e) => {
         if (!loading && onClick) onClick(e);

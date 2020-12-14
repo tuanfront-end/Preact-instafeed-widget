@@ -11,7 +11,7 @@ export default function Modal({
   return (
     <div className="wilMyModalContainer">
       <div className="wilMyModal__btnClose" onClick={onClose}>
-        X
+        &times;
       </div>
       {children}
     </div>

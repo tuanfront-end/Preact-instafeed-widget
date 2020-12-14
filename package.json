@@ -5,8 +5,12 @@
     "main": "index.html",
     "scripts": {
         "start": "parcel index.html --open",
-        "move": "mv dist/*.css /Volumes/Data/MAMP/htdocs/wordpress_1/wp-content/plugins/wiloke-instafeedhub-wp/assets/forWidget/foked.css && mv dist/*.js /Volumes/Data/MAMP/htdocs/wordpress_1/wp-content/plugins/wiloke-instafeedhub-wp/assets/forWidget/foked.js",
-        "build": "parcel build index.html && yarn move"
+        "moveToWidget": "mv dist/*.css /Volumes/Data/MAMP/htdocs/wordpress_1/wp-content/plugins/instafeedhub-wp/assets/forWidget/foked.css && mv dist/*.js /Volumes/Data/MAMP/htdocs/wordpress_1/wp-content/plugins/instafeedhub-wp/assets/forWidget/foked.js",
+        "moveToBakery": "mv dist/*.css /Volumes/Data/MAMP/htdocs/wordpress_1/wp-content/plugins/instafeedhub-wp/assets/forBakery/foked.css && mv dist/*.js /Volumes/Data/MAMP/htdocs/wordpress_1/wp-content/plugins/instafeedhub-wp/assets/forBakery/foked.js",
+        "moveToElementor": "mv dist/*.css /Volumes/Data/MAMP/htdocs/wordpress_1/wp-content/plugins/instafeedhub-wp/assets/forElementor/foked.css && mv dist/*.js /Volumes/Data/MAMP/htdocs/wordpress_1/wp-content/plugins/instafeedhub-wp/assets/forElementor/foked.js",
+        "buildToWidget": "parcel build index.html && yarn moveToWidget",
+        "buildToBakery": "parcel build index.html && yarn moveToBakery",
+        "buildToElementor": "parcel build index.html && yarn moveToElementor"
     },
     "dependencies": {
         "axios": "^0.21.0",
